@@ -45,10 +45,11 @@ func logHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	_ = r.Body.Close()
 
-	log.Printf("%s %s body=%s", r.Method, r.URL.String(), string(body))
+	logdata := fmt.Sprintf("%s %s body=%s", r.Method, r.URL.String(), string(body))
+	log.Printf("%s", logdata)
 
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "ok")
+	fmt.Fprintln(w, logdata)
 }
 
 func getenv(key, def string) string {
